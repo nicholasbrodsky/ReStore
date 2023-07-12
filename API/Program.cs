@@ -42,5 +42,4 @@ catch (Exception e) {
     logger.LogError(e, "Problem occurred during migration/db init.");
 }
 
-
 app.Run();
