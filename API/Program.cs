@@ -29,4 +29,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// create serviced scope to allow use of registered services within Program.cs
+var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+try {
+    context.Database.Migrate();
+    DbInitializer.Initialize(context);
+}
+catch (Exception e) {
+    logger.LogError(e, "Problem occurred during migration/db init.");
+}
+
+
 app.Run();

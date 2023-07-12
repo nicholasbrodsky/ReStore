@@ -1,3 +1,5 @@
+using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -12,21 +14,26 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly StoreContext _storeContext;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, StoreContext storeContext)
     {
         _logger = logger;
+        _storeContext = storeContext;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<Product> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        DbInitializer.Initialize(_storeContext);
+        return _storeContext.Products.ToArray();
+
+        // return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        // {
+        //     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+        //     TemperatureC = Random.Shared.Next(-20, 55),
+        //     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        // })
+        // .ToArray();
     }
 }
