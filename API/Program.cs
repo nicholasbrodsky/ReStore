@@ -17,7 +17,7 @@ builder.Services.AddDbContext<StoreContext>(options => {
 
 builder.Services.AddCors(options => {
     options.AddPolicy("CorsPolicy", policy => {
-        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
     });
 });
 
