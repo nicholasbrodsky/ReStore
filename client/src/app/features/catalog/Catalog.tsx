@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { IProduct } from "../../models/product";
+import { Avatar, Button, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
 
 interface IProps {
     products: IProduct[],
@@ -9,14 +10,23 @@ interface IProps {
 function Catalog({products, addProduct}: IProps) {
     return (
         <>
-            <ul>
+            <List>
                 {products.map((product, index) => {
                 return (
-                    <li key={index}>{product.name}</li>
+                    <ListItem key={index}>
+                        <ListItemAvatar>
+                            <Avatar src={product.pictureUrl} />
+                        </ListItemAvatar>
+                        <ListItemText>
+                            {product.name} - {product.price}
+                        </ListItemText>
+                    </ListItem>
                 )
                 })}
-            </ul>
-            <button onClick={addProduct}>Add Product</button>
+            </List>
+            <Button
+                variant="contained"
+                onClick={addProduct}>Add Product</Button>
         </>
     )
 }
