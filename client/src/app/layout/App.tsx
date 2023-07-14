@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/product";
 import Catalog from "../features/catalog/Catalog";
-import { Typography } from "@mui/material";
+import Header from "./Header";
+import { Container, CssBaseline } from "@mui/material";
 
 export default function App() {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -20,10 +21,13 @@ export default function App() {
 
   return (
     <>
-      <Typography variant="h1">Re-Store</Typography>
-      <Catalog
-        products={products}
-        addProduct={addProduct} />
+      <CssBaseline />
+      <Header />
+      <Container>
+        <Catalog
+          products={products}
+          addProduct={addProduct} />
+      </Container>
     </>
   );
 }
