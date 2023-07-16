@@ -6,10 +6,10 @@ interface IProps {
     products: IProduct[],
 }
 
-export default function ProductList({products}: IProps) {
+export default function ProductList(props: IProps) {
     return (
         <Grid container spacing={4}>
-            {products.map((product) => (
+            {props.products.map((product) => (
                     <Grid item xs={3} key={product.id}>
                         <ProductCard
                             product={product} />
