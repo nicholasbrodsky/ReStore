@@ -68,7 +68,6 @@ export default function Header() {
                         ))}
                     </List>
                 </Box>
-                {/* <NavLink to='/'>test</NavLink> */}
             </Toolbar>
         </AppBar>
     )

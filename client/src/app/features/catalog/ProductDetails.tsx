@@ -2,9 +2,7 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IProduct } from "../../models/product";
-import axios from "axios";
-import ProductCard from "./ProductCard";
-import { Image } from "@mui/icons-material";
+import axios, { AxiosResponse } from "axios";
 
 export default function ProductDetails() {
     const { id } = useParams()
@@ -13,7 +11,8 @@ export default function ProductDetails() {
     
     useEffect(() => {
         axios.get(`http://localhost:8080/api/products/${id}`)
-            .then(response => setProduct(response.data))
+            .then((response: AxiosResponse) => response.data)
+            .then((product: IProduct) => setProduct(product))
             .catch(error => console.log(error))
             .finally(() => setLoading(false))
     }, [id])
