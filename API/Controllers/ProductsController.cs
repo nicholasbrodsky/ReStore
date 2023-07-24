@@ -32,6 +32,8 @@ namespace API.Controllers
             // throw new Exception("Server error");
 
             var product = await _context.Products.FindAsync(id);
+            if (product is null)
+                return NotFound("Product not found. Invalid id.");
             return Ok(product);
         }
     }
