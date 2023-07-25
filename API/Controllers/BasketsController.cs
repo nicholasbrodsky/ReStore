@@ -82,7 +82,7 @@ namespace API.Controllers
                         Product = item.Product,
                     }).ToList(),
                 });
-                // return Created("GetBasket", new BasketDTO
+                // return Created("http://localhost:3000/api/baskets", new BasketDTO
                 // {
                 //     Id = basket.Id,
                 //     BuyerId = basket.BuyerId,

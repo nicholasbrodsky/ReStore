@@ -1,6 +1,9 @@
 import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import agent from "../agent";
+import { IBasket, IBasketItem } from "../models/basket";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -26,6 +29,22 @@ const navStyles = {
 }
 
 export default function Header() {
+
+    const [basketCount, setBasketCount] = useState<number>(0);
+
+    useEffect(() => {
+        agent.Basket.getBasket()
+            .then((basket: IBasket) => {
+                let quantity = 0;
+                for(const item of basket.basketItems) {
+                    quantity += item.quantity;
+                }
+                setBasketCount(quantity);
+            })
+            .catch();
+
+    }, []);
+
     return (
         <AppBar sx={{ marginBottom: 4 }} position="static">
             <Toolbar
@@ -51,8 +70,8 @@ export default function Header() {
                 </List>
 
                 <Box display='flex' alignItems='center'>
-                    <IconButton edge='start' color="inherit" size="large" sx={{ marginRight: 2 }}>
-                        <Badge badgeContent='4' color="secondary">
+                    <IconButton component={Link} to='basket' edge='start' color="inherit" size="large" sx={{ marginRight: 2 }}>
+                        <Badge badgeContent={basketCount} color="secondary">
                             <ShoppingCart />
                         </Badge>
                     </IconButton>

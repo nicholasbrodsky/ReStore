@@ -1,10 +1,16 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 
 axios.defaults.baseURL = "http://localhost:8080/api/";
+axios.defaults.withCredentials = true;
 
 const responseBody = (response: AxiosResponse) => response.data
 
-axios.interceptors.response.use(async (response: AxiosResponse) => response,
+const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
+
+axios.interceptors.response.use(async (response: AxiosResponse) => {
+    await sleep();
+    return response;
+},
     (error: AxiosError) => {
         const er = error.response!
         const { data, status } = error.response! as AxiosResponse
@@ -44,9 +50,16 @@ const TestErrors = {
     getValidationError: () => requests.get('buggy/validation-error'),
 }
 
+const Basket = {
+    getBasket: () => requests.get('baskets'),
+    addBasket: (productId: number, quantity: number) => requests.post(`baskets?productId=${productId}&quantity=${quantity}`, {}),
+    removeBasket : (productId: number, quantity: number) => requests.delete(`baskets?productId=${productId}&quantity=${quantity}`),
+}
+
 const agent = {
     Catalog,
-    TestErrors
+    TestErrors,
+    Basket,
 }
 
 export default agent

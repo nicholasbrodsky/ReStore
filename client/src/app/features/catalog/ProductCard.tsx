@@ -1,12 +1,24 @@
 import { Card, CardMedia, CardContent, Typography, Button, CardActions } from "@mui/material";
 import { IProduct } from "../../models/product";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import agent from "../../agent";
 
 interface IProps {
     product: IProduct,
 }
 
 export default function ProductCard({product}: IProps) {
+
+    const [loading, setLoading] = useState<boolean>(false);
+
+    function addToCartClick() {
+        setLoading(true);
+        agent.Basket.addBasket(product.id!, 1)
+            .catch(() => console.log("error adding item to basket"))
+            .finally(() => setLoading(false));
+    }
+
     return (
         <Card>
             <CardMedia
@@ -22,7 +34,9 @@ export default function ProductCard({product}: IProps) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                {loading ? 
+                    <Button>Loading...</Button> :
+                    <Button onClick={addToCartClick} size="small">Add to Cart</Button>}
                 <Button size="small" component={Link} to={`/catalog/${product.id}`}>Learn More</Button>
                 {/* <Link to={"/catalog/" + product.id}>Learn More</Link> */}
             </CardActions>
