@@ -6,24 +6,24 @@ interface IProps {
     item: IBasketItem,
 }
 
-export default function BasketItemPage({item}: IProps) {
+export default function BasketItem({item}: IProps) {
     
     const [loading, setLoading] = useState<boolean>(true);
     const [basketItem, setBasketItem] = useState<IBasketItem | null>(null);
 
     function addBasketItem(productId: number) {
-        agent.Basket.addBasket(productId, 1)
-            .then(() => {
-                setLoading(true);
-                agent.Basket.getBasket()
-                    .then(basket => {
-                        // let basketItem =
-                    })
-                    .catch(error => console.log(error))
-                    .finally(() => setLoading(false));
-            })
-            .catch(() => console.log("error adding"))
-            .finally();
+        // agent.Basket.addBasket(productId, 1)
+        //     .then(() => {
+        //         setLoading(true);
+        //         agent.Basket.getBasket()
+        //             .then(basket => {
+        //                 // let basketItem =
+        //             })
+        //             .catch(error => console.log(error))
+        //             .finally(() => setLoading(false));
+        //     })
+        //     .catch(() => console.log("error adding"))
+        //     .finally();
     }
 
     function removeBasketItem(productId: number) {
@@ -31,7 +31,7 @@ export default function BasketItemPage({item}: IProps) {
     }
 
     return (
-        <div className="row">
+        <div className="row" style={{ margin: 24, padding: 12, borderRadius: 4, border: '1px solid #ccc', boxShadow: '4px 4px 12px #aaa' }}>
             <div className="col-sm-4">
                 <img src={item.product.pictureUrl} width={'100%'} />
             </div>

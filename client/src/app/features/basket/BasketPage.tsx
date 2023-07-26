@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { IBasket, IBasketItem } from "../../models/basket";
 import agent from "../../agent";
-import BasketItemPage from "./BasketItemPage";
+import BasketItem from "./BasketItem";
 
 export default function BasketPage() {
     const [loading, setLoading] = useState<boolean>(true);
@@ -25,7 +25,7 @@ export default function BasketPage() {
     return (
         <div className="container-fluid">
             {basket.basketItems.map((item: IBasketItem) => (
-                <BasketItemPage item={item} key={item.product.id} />
+                <BasketItem item={item} key={item.product.id} />
             ))}
         </div>
     )
