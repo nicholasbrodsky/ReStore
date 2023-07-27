@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import agent from "../agent";
 import { IBasket, IBasketItem } from "../models/basket";
+import { useStoreContext } from "../context/StoreContext";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -30,20 +31,7 @@ const navStyles = {
 
 export default function Header() {
 
-    const [basketCount, setBasketCount] = useState<number>(0);
-
-    // useEffect(() => {
-    //     agent.Basket.getBasket()
-    //         .then((basket: IBasket) => {
-    //             let quantity = 0;
-    //             for(const item of basket.basketItems) {
-    //                 quantity += item.quantity;
-    //             }
-    //             setBasketCount(quantity);
-    //         })
-    //         .catch();
-
-    // }, []);
+    const { basket } = useStoreContext();
 
     return (
         <AppBar sx={{ marginBottom: 4 }} position="static">
@@ -71,7 +59,7 @@ export default function Header() {
 
                 <Box display='flex' alignItems='center'>
                     <IconButton component={Link} to='basket' edge='start' color="inherit" size="large" sx={{ marginRight: 2 }}>
-                        <Badge badgeContent={basketCount} color="secondary">
+                        <Badge badgeContent={basket?.basketItems.reduce((sum, item) => sum += item.quantity, 0)} color="secondary">
                             <ShoppingCart />
                         </Badge>
                     </IconButton>

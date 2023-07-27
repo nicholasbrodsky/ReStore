@@ -1,33 +1,30 @@
 import { useState } from "react";
 import agent from "../../agent";
 import { IBasketItem } from "../../models/basket"
+import { useStoreContext } from "../../context/StoreContext";
 
 interface IProps {
     item: IBasketItem,
 }
 
 export default function BasketItem({item}: IProps) {
-    
-    // const [loading, setLoading] = useState<boolean>(true);
-    // const [basketItem, setBasketItem] = useState<IBasketItem | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const { setBasket, removeItem } = useStoreContext();
 
     function addBasketItem(productId: number) {
-        // agent.Basket.addBasket(productId, 1)
-        //     .then(() => {
-        //         setLoading(true);
-        //         agent.Basket.getBasket()
-        //             .then(basket => {
-        //                 // let basketItem =
-        //             })
-        //             .catch(error => console.log(error))
-        //             .finally(() => setLoading(false));
-        //     })
-        //     .catch(() => console.log("error adding"))
-        //     .finally();
+        setLoading(true);
+        agent.Basket.addBasket(item.product.id!, 1)
+            .then(basket => setBasket(basket))
+            .catch()
+            .finally(() => setLoading(false));
     }
 
     function removeBasketItem(productId: number) {
-
+        setLoading(true);
+        agent.Basket.removeBasket(item.product.id!, 1)
+            .then(() => removeItem(item.product.id!, 1))
+            .catch()
+            .finally(() => setLoading(false));
     }
 
     return (
@@ -40,7 +37,7 @@ export default function BasketItem({item}: IProps) {
                 <div className="col-sm-3" style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h6>Quantity: </h6>
                     <button onClick={() => removeBasketItem(item.product.id!)} className="btn btn-sm btn-danger">-</button>
-                    <span>{item.quantity}</span>
+                    { loading ? <span>Loading...</span> : <span>{item.quantity}</span>}
                     <button onClick={() => addBasketItem(item.product.id!)} className="btn btn-sm btn-primary">+</button>
                 </div>
             </div>

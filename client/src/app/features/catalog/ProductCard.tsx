@@ -3,18 +3,20 @@ import { IProduct } from "../../models/product";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import agent from "../../agent";
+import { useStoreContext } from "../../context/StoreContext";
 
 interface IProps {
     product: IProduct,
 }
 
 export default function ProductCard({product}: IProps) {
-
+    const { setBasket } = useStoreContext();
     const [loading, setLoading] = useState<boolean>(false);
 
     function handleAddItemToBasket() {
         setLoading(true);
         agent.Basket.addBasket(product.id!, 1)
+            .then(basket => setBasket(basket))
             .catch(() => console.log("error adding item to basket"))
             .finally(() => setLoading(false));
     }
