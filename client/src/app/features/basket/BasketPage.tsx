@@ -2,23 +2,12 @@ import { useEffect, useState } from "react"
 import { IBasket, IBasketItem } from "../../models/basket";
 import agent from "../../agent";
 import BasketItem from "./BasketItem";
+import { useStoreContext } from "../../context/StoreContext";
 
 export default function BasketPage() {
-    const [loading, setLoading] = useState<boolean>(true);
-    const [basket, setBasket] = useState<IBasket | null>(null);
+    const {basket} = useStoreContext();
 
-    useEffect(() => {
-        agent.Basket.getBasket()
-            .then(basket => setBasket(basket))
-            .catch(error => console.log(error))
-            .finally(() => setLoading(false));
-    }, []);
-
-    function removeBasketItem(productId: number) {
-        
-    }
-
-    if (loading) return (<h3>Loading...</h3>)
+    // if (loading) return (<h3>Loading...</h3>)
 
     if (!basket) return (<h3>Not Found...</h3>)
 

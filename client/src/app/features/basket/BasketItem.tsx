@@ -8,8 +8,8 @@ interface IProps {
 
 export default function BasketItem({item}: IProps) {
     
-    const [loading, setLoading] = useState<boolean>(true);
-    const [basketItem, setBasketItem] = useState<IBasketItem | null>(null);
+    // const [loading, setLoading] = useState<boolean>(true);
+    // const [basketItem, setBasketItem] = useState<IBasketItem | null>(null);
 
     function addBasketItem(productId: number) {
         // agent.Basket.addBasket(productId, 1)

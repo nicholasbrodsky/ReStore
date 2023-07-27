@@ -1,8 +1,8 @@
 import { IProduct } from "./product";
 
 export interface IBasketItem {
-    quantity: number,
-    product: IProduct,
+    quantity: number
+    product: IProduct
 }
 
 export interface IBasket {

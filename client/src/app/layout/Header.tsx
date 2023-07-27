@@ -32,18 +32,18 @@ export default function Header() {
 
     const [basketCount, setBasketCount] = useState<number>(0);
 
-    useEffect(() => {
-        agent.Basket.getBasket()
-            .then((basket: IBasket) => {
-                let quantity = 0;
-                for(const item of basket.basketItems) {
-                    quantity += item.quantity;
-                }
-                setBasketCount(quantity);
-            })
-            .catch();
+    // useEffect(() => {
+    //     agent.Basket.getBasket()
+    //         .then((basket: IBasket) => {
+    //             let quantity = 0;
+    //             for(const item of basket.basketItems) {
+    //                 quantity += item.quantity;
+    //             }
+    //             setBasketCount(quantity);
+    //         })
+    //         .catch();
 
-    }, []);
+    // }, []);
 
     return (
         <AppBar sx={{ marginBottom: 4 }} position="static">

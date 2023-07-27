@@ -12,7 +12,7 @@ export default function ProductCard({product}: IProps) {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    function addToCartClick() {
+    function handleAddItemToBasket() {
         setLoading(true);
         agent.Basket.addBasket(product.id!, 1)
             .catch(() => console.log("error adding item to basket"))
@@ -36,7 +36,7 @@ export default function ProductCard({product}: IProps) {
             <CardActions>
                 {loading ? 
                     <Button>Loading...</Button> :
-                    <Button onClick={addToCartClick} size="small">Add to Cart</Button>}
+                    <Button onClick={handleAddItemToBasket} size="small">Add to Cart</Button>}
                 <Button size="small" component={Link} to={`/catalog/${product.id}`}>Learn More</Button>
                 {/* <Link to={"/catalog/" + product.id}>Learn More</Link> */}
             </CardActions>
