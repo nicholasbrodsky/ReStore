@@ -25,12 +25,16 @@ namespace API.Entities
                 });
             }
         }
-        public void RemoveItem(int productId, int quantity)
+        public void RemoveItem(int productId, int quantity = 1)
         {
             if (BasketItems.Any(item => item.ProductId == productId))
             {
                 BasketItem basketItem = BasketItems.Find(item => item.ProductId == productId);
-                basketItem.Quantity = (basketItem.Quantity - quantity > 0) ? basketItem.Quantity - quantity : 0;
+                basketItem.Quantity -= quantity;
+                if (basketItem.Quantity <= 0)
+                {
+                    BasketItems.Remove(basketItem);
+                }
             }
         }
     }

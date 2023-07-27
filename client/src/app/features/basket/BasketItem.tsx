@@ -13,7 +13,7 @@ export default function BasketItem({item}: IProps) {
 
     function addBasketItem(productId: number) {
         setLoading(true);
-        agent.Basket.addBasket(item.product.id!, 1)
+        agent.Basket.addBasket(productId!, 1)
             .then(basket => setBasket(basket))
             .catch()
             .finally(() => setLoading(false));
@@ -21,18 +21,21 @@ export default function BasketItem({item}: IProps) {
 
     function removeBasketItem(productId: number) {
         setLoading(true);
-        agent.Basket.removeBasket(item.product.id!, 1)
-            .then(() => removeItem(item.product.id!, 1))
+        agent.Basket.removeBasket(productId, 1)
+            .then(() => removeItem(productId, 1))
             .catch()
             .finally(() => setLoading(false));
     }
 
     return (
         <div className="row" style={{ margin: 24, padding: 12, borderRadius: 4, border: '1px solid #ccc', boxShadow: '4px 4px 12px #aaa' }}>
-            <div className="col-sm-4">
+            <div className="col">
+
+            </div>
+            <div className="col-sm-2">
                 <img src={item.product.pictureUrl} width={'100%'} />
             </div>
-            <div className="col-sm-8">
+            <div className="col-sm-9">
                 <h4>{item.product.name}</h4>
                 <div className="col-sm-3" style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h6>Quantity: </h6>

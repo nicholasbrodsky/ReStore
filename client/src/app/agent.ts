@@ -15,7 +15,7 @@ axios.interceptors.response.use(async (response: AxiosResponse) => {
         const er = error.response!
         const { data, status } = error.response! as AxiosResponse
         console.log("error caught")
-        if (status == 400) {
+        if (status === 400) {
             if (data.errors) {
                 const modelStateErrors: string[] = []
                 for (const key in data.errors) {

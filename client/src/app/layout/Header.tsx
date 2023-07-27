@@ -1,9 +1,6 @@
 import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import agent from "../agent";
-import { IBasket, IBasketItem } from "../models/basket";
 import { useStoreContext } from "../context/StoreContext";
 
 const midLinks = [

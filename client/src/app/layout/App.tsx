@@ -27,7 +27,7 @@ export default function App() {
     else {
       setLoading(false);
     }
-  }, []);
+  }, [setBasket]);
 
   return (
     <>
