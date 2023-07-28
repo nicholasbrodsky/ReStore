@@ -32,10 +32,7 @@ export default function ProductDetails() {
         if (!item || quantity > item.quantity) {
             const updatedQty = !item ? quantity : quantity - item.quantity;
             agent.Basket.addBasket(product.id!, updatedQty)
-                .then((basket: IBasket) => {
-                    setBasket(basket);
-                    // setQuantity(basket.basketItems.find(item => item.product.id === product.id)!.quantity);
-                })
+                .then((basket: IBasket) => setBasket(basket))
                 .catch(error => console.log(error))
                 .finally(() => setLoadingCart(false));
         }
@@ -102,7 +99,7 @@ export default function ProductDetails() {
                                         <label style={{ position: 'absolute', top: '-8px', left: '20px', backgroundColor: '#fff', padding: '0 4px', }}>Qty in Cart:</label>
                                         <input style={{ padding: '6px', marginRight: '12px', }} type="number" value={quantity} onChange={handleInputChange} min='0'/>
                                         <button className="btn btn-primary" onClick={handleAddItemToBasket} disabled={(item && item.quantity === quantity) || (!item && quantity === 0)}>
-                                            { !item || item.quantity === 0 ? "Add To Cart" : "Update Cart" }
+                                            {loadingCart ? ("Loading...") : ( !item || item.quantity === 0 ? "Add To Cart" : "Update Cart" )}
                                         </button>
                                     </div>
                                 </TableCell>

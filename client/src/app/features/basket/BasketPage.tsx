@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
-import { IBasket, IBasketItem } from "../../models/basket";
-import agent from "../../agent";
+import { IBasketItem } from "../../models/basket";
 import BasketItem from "./BasketItem";
 import { useStoreContext } from "../../context/StoreContext";
 

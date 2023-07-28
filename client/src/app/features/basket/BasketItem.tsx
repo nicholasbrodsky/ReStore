@@ -29,11 +29,9 @@ export default function BasketItem({item}: IProps) {
 
     return (
         <div className="row" style={{ margin: 24, padding: 12, borderRadius: 4, border: '1px solid #ccc', boxShadow: '4px 4px 12px #aaa' }}>
-            <div className="col">
-
-            </div>
+            <div className="col"></div>
             <div className="col-sm-2">
-                <img src={item.product.pictureUrl} width={'100%'} />
+                <img src={item.product.pictureUrl} width={'100%'} alt="Product" />
             </div>
             <div className="col-sm-9">
                 <h4>{item.product.name}</h4>

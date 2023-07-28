@@ -28,14 +28,14 @@ export function StoreProvider({children}: PropsWithChildren<any>) {
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
-        const items = [...basket.basketItems];
-        const itemIndex = items.findIndex(item => item.product.id === productId);
+        const basketItems = [...basket.basketItems];
+        const itemIndex = basketItems.findIndex(item => item.product.id === productId);
         if (itemIndex >= 0) {
-            items[itemIndex].quantity -= quantity;
-            if (items[itemIndex].quantity === 0)
-                items.splice(itemIndex, 1);
+            basketItems[itemIndex].quantity -= quantity;
+            if (basketItems[itemIndex].quantity === 0)
+            basketItems.splice(itemIndex, 1);
             setBasket(prevState => {
-                return {...prevState!, items};
+                return {...prevState!, basketItems};
             });
         }
     }
