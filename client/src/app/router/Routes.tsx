@@ -6,6 +6,7 @@ import ProductDetails from "../features/catalog/ProductDetails";
 import ContactPage from "../features/contact/ContactPage";
 import AboutPage from "../features/about/AboutPage";
 import BasketPage from "../features/basket/BasketPage";
+import CheckoutPage from "../features/checkout/CheckoutPage";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
             { path: 'about', element: <AboutPage /> },
             { path: 'contact', element: <ContactPage /> },
             { path: 'basket', element: <BasketPage /> },
+            { path: 'checkout', element: <CheckoutPage /> },
         ]
     },
 ])

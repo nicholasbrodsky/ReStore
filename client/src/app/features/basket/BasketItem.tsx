@@ -35,11 +35,15 @@ export default function BasketItem({item}: IProps) {
             </div>
             <div className="col-sm-9">
                 <h4>{item.product.name}</h4>
-                <div className="col-sm-3" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className="col-sm-4" style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h6>Quantity: </h6>
                     <button onClick={() => removeBasketItem(item.product.id!)} className="btn btn-sm btn-danger">-</button>
                     { loading ? <span>Loading...</span> : <span>{item.quantity}</span>}
                     <button onClick={() => addBasketItem(item.product.id!)} className="btn btn-sm btn-primary">+</button>
+                </div>
+                <div>
+                    <span>Price: </span>
+                    <span>${((item.product.price * item.quantity) / 100).toFixed(2)}</span>
                 </div>
             </div>
         </div>
