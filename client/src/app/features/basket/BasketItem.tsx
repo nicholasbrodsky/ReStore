@@ -1,5 +1,5 @@
 import { useState } from "react";
-import agent from "../../agent";
+import agent from "../../api/agent";
 import { IBasketItem } from "../../models/basket"
 import { useStoreContext } from "../../context/StoreContext";
 

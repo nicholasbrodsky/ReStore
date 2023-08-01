@@ -2,7 +2,7 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IProduct } from "../../models/product";
-import agent from "../../agent";
+import agent from "../../api/agent";
 import { useStoreContext } from "../../context/StoreContext";
 import { IBasket } from "../../models/basket";
 

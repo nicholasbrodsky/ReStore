@@ -1,6 +1,6 @@
 // import { Typography } from "@mui/material";
 import { useState } from "react";
-import agent from "../../agent";
+import agent from "../../api/agent";
 import { AxiosResponse } from "axios";
 
 export default function AboutPage() {

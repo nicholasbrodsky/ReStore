@@ -2,7 +2,7 @@ import { Card, CardMedia, CardContent, Typography, Button, CardActions } from "@
 import { IProduct } from "../../models/product";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import agent from "../../agent";
+import agent from "../../api/agent";
 import { useStoreContext } from "../../context/StoreContext";
 
 interface IProps {

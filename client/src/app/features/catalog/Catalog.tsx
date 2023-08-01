@@ -1,7 +1,7 @@
 import { IProduct } from "../../models/product";
 import ProductList from "./ProductList";
 import { useState, useEffect } from "react";
-import agent from "../../agent";
+import agent from "../../api/agent";
 
 function Catalog() {
     const [products, setProducts] = useState<IProduct[]>([])

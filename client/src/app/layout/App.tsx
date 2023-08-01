@@ -3,7 +3,7 @@ import Header from "./Header";
 import { Container, CssBaseline } from "@mui/material";
 import { useStoreContext } from "../context/StoreContext";
 import { useEffect, useState } from "react";
-import agent from "../agent";
+import agent from "../api/agent";
 import { IBasket } from "../models/basket";
 
 function getCookie(key: string) {
